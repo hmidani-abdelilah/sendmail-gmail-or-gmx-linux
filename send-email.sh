@@ -19,7 +19,7 @@ source ./ssmt-p.sh
 source ./mail-s.sh
 source ./mut-t.sh
 source ./mpac-k.sh
-source ./test.sh
+
 
 configfile=/etc/ssmtp/ssmtp.conf
 if [ -f /usr/bin/dialog ] && [ -f /usr/bin/ccze ]; then
