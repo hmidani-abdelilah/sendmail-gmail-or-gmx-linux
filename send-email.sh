@@ -10,7 +10,8 @@
 ######################################################################################
 if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
-       echo -e "'\033[0;36m' example: '\033[0;31m'" sudo $0
+        echo 
+       echo -e '\033[0;36m' "example:" '\033[0;31m' " sudo $0 "
     exit
 fi
 
