@@ -23,7 +23,7 @@ source ./mut-t.sh
 source ./mpac-k.sh
 source ./links.sh
 source ./configuration.sh
-source ./Check_config.sh
+source ./check_config.sh
 
 
 configfile=/etc/ssmtp/ssmtp.conf
