@@ -1,6 +1,7 @@
 #!/bin/bash
 
 Check () {
+    configfile=/etc/ssmtp/ssmtp.conf
     echo "Check your config:"
     while :
         do
