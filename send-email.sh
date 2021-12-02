@@ -24,7 +24,7 @@ source ./mpac-k.sh
 source ./links.sh
 source ./configuration.sh
 source ./check_config.sh
-source ./testt.sh
+
 
 
 configfile=/etc/ssmtp/ssmtp.conf
@@ -68,7 +68,6 @@ OPTIONS=(1 "Allow your gmail in links"
          9 "Test mpack"
          10 "Test mutt"
          11 "Exit"
-         12 "Test"
          )
 
 CHOICE=$(dialog --clear \
@@ -120,9 +119,5 @@ case $CHOICE in
             ;;
         11 ) 
             exit
-            ;;
-        12 ) 
-            tesst
-        
             ;;
 esac
