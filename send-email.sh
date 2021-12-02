@@ -27,9 +27,9 @@ source ./check_config.sh
 
 
 configfile=/etc/ssmtp/ssmtp.conf
-if [ -f /usr/bin/dialog ] && [ -f /usr/bin/ccze ]; then
+if [ -f /usr/bin/dialog ] && [ -f /usr/bin/ccze ] && [ -f /bin/whiptail ]; then
    #sudo ./$0
-   echo 'File \"/usr/bin/dialog and \"/usr/bin/ccze" exists'
+   echo 'File \"/usr/bin/dialog and \"/usr/bin/ccze" \"/bin/whiptail" exists'
 else
 sudo apt update -y &> /dev/null
 wait
