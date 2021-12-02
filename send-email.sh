@@ -40,7 +40,7 @@ else
 echo -e '\033[0;31m'"Error not updated "'\033[0m'
 fi
 echo -e "'\033[0;36m' Install dialog ccze '\033[0;31m'"
-sudo apt install -y dialog ccze &> /dev/null
+sudo apt install -y dialog ccze whiptail &> /dev/null
 if (( $? == 0 )); then
 echo -e '\033[0;32m'"Done"'\033[0m'
 sleep 1
