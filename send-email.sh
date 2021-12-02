@@ -89,6 +89,7 @@ case $CHOICE in
             ;;
         3)
             configuration
+            sudo ./$0
             ;;
         4)
             Check 
@@ -122,6 +123,6 @@ case $CHOICE in
             ;;
         12 ) 
             tesst
-            sudo ./$0
+        
             ;;
 esac
