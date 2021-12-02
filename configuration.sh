@@ -1,6 +1,6 @@
 #!/bin/bash
 configuration () {
-configfile=/etc/ssmtp/ssmtp.conf
+configfile=/etc/ssmtp/ssmtp.conf 
 servergmail=(`sudo grep smtp.gmail.com:465 /etc/ssmtp/ssmtp.conf |cut -f 2 -d =`)
 gmailserver="smtp.gmail.com:465"
 #if [ -a ${configfile} ];then
