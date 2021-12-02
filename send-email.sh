@@ -15,15 +15,15 @@ if [ "$EUID" -ne 0 ]
     exit
 fi
 
-source ./package.sh
-source ./mail-x.sh
-source ./ssmt-p.sh
-source ./mail-s.sh
-source ./mut-t.sh
-source ./mpac-k.sh
-source ./links.sh
-source ./configuration.sh
-source ./check_config.sh
+source ./pack/package.sh
+source ./pack/mail-x.sh
+source ./pack/ssmt-p.sh
+source ./pack/mail-s.sh
+source ./pack/mut-t.sh
+source ./pack/mpac-k.sh
+source ./pack/links.sh
+source ./pack/configuration.sh
+source ./pack/check_config.sh
 
 
 
