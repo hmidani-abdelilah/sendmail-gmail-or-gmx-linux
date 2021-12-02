@@ -85,6 +85,7 @@ case $CHOICE in
             ;;
         2) 
             package
+            sudo ./$0
             ;;
         3)
             configuration
