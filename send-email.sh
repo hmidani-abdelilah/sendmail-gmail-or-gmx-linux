@@ -24,6 +24,7 @@ source ./mpac-k.sh
 source ./links.sh
 source ./configuration.sh
 source ./check_config.sh
+source ./testt.sh
 
 
 configfile=/etc/ssmtp/ssmtp.conf
@@ -119,5 +120,8 @@ case $CHOICE in
         11 ) 
             exit
             ;;
-        12 ) testt
+        12 ) 
+            tesst
+            sudo ./$0
+            ;;
 esac

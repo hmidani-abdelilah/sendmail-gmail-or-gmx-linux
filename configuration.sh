@@ -26,19 +26,23 @@ if [ -a ${configfile} ];then
                     esac
                 done
             else
-                echo -e '\033[0;31m' "Enter your information:" '\033[0m'
-                read -p "Enter you '(root)' name: " name 
-                read -p "Enter gmail addresse AuthUser: " gmail
-                read -sp "Password: " password
-                echo 
-                echo 
+             #echo -e '\033[0;31m' "Enter your information:" '\033[0m'
+             #read -p "Enter you '(root)' name: " name 
+             #read -p "Enter gmail addresse AuthUser: " gmail
+             #read -sp "Password: " password
+             #echo 
+             #echo
+                whiptail --msgbox "Enter your information send email ." --fb --title "Configuration send email information" 10 100
+                name=$(whiptail --inputbox "Enter you '(root)' name" 10 100 3>&1 1>&2 2>&3)
+                gmail=$(whiptail --inputbox "Enter gmail addresse AuthUser:" 10 100 3>&1 1>&2 2>&3)
+                password=$(whiptail --passwordbox "Please enter your password" 10 100 3>&1 1>&2 2>&3)
                 echo -e "Your name (root) is: " '\033[1;32m' ${name} '\033[0m'
                 echo -e "Your email addresse AuthUser is: " '\033[1;31m' ${gmail} '\033[0m'
                 echo
                 echo -e "If no correct press '\033[0;31m' ctrl+c '\033[0m' to exit and run it"
                 echo
                 echo -e "If you want to shake information use '\033[1;32m' ( cat ${configfile} ) '\033[0m' and edit if not correct."
-                sleep 10 
+                sleep 4 
                 echo "root=${name}" >> ${configfile}
                 echo "mailhub=smtp.gmail.com:465" >> ${configfile}
                 SERVER="`hostname`"
