@@ -1,8 +1,10 @@
 #!/bin/bash
 configuration () {
 configfile=/etc/ssmtp/ssmtp.conf
-
-if [ -a ${configfile} ];then
+servergmail=(`sudo grep smtp.gmail.com:465 /etc/ssmtp/ssmtp.conf |cut -f 2 -d =`)
+gmailserver="mailhub=smtp.gmail.com:465"
+#if [ -a ${configfile} ];then
+if [ $servergmail -eq $gmailserver ];then
                 echo -e '\033[0;33m' "File ${configfile} exists"'\033[0m'
                 echo 
                 while :
@@ -43,6 +45,7 @@ if [ -a ${configfile} ];then
                 echo
                 echo -e "If you want to shake information use '\033[1;32m' ( cat ${configfile} ) '\033[0m' and edit if not correct."
                 sleep 4 
+                echo >> ${configfile}
                 echo "root=${name}" >> ${configfile}
                 echo "mailhub=smtp.gmail.com:465" >> ${configfile}
                 SERVER="`hostname`"
