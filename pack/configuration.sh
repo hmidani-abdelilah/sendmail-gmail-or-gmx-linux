@@ -13,7 +13,7 @@ if [ ${servergmail} = ${gmailserver} ]; then
 		            read ANSW
                     case $ANSW in
                         Y|y|yes|YES|Yes)
-                            sensible-editor ${configfile}
+                            sensible-editor ${configfile} 2> /dev/null || vim  ${configfile} 2> /dev/null
                             ;;
                         N|n|no|NO|No)
                             sudo ./$0

@@ -19,7 +19,7 @@ sendssmtp
 else
 echo 'File \"/usr/sbin/ssmtp" exists'
 echo -e '\033[0;31m' "Update System" '\033[0m'
-sudo apt update -y &> /dev/null
+sudo ${manager} update -y &> /dev/null
 if (( $? == 0 )); then
 echo -e '\033[0;32m'"Done"'\033[0m'
 sleep 2
@@ -27,7 +27,7 @@ else
 echo -e '\033[0;31m'"Error not updated "'\033[0m'
 fi
 echo -e '\033[0;31m' "Install tools ssmtp" '\033[0m'
-sudo apt install ssmtp -y &> /dev/null
+sudo ${manager} install ssmtp -y &> /dev/null
 if (( $? == 0 )); then
 echo -e '\033[0;32m'"Done"'\033[0m'
 sleep 2

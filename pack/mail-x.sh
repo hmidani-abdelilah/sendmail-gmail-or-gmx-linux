@@ -28,7 +28,7 @@ sendmailx
 else
 echo 'File \"/usr/bin/mailx" exists'
 echo -e '\033[0;31m' "Update System" '\033[0m'
-sudo apt update -y &> /dev/null
+sudo ${manager} update -y &> /dev/null
 if (( $? == 0 )); then
 echo -e '\033[0;32m'"Done"'\033[0m'
 sleep 2
@@ -36,7 +36,8 @@ else
 echo -e '\033[0;31m'"Error not updated "'\033[0m'
 fi
 echo -e '\033[0;31m' "Install tools mailx" '\033[0m'
-sudo apt install mailutils -y &> /dev/null
+sudo ${manager} install mailutils -y &> /dev/null || sudo ${manager} install mailx -y &> /dev/null
+wait
 if (( $? == 0 )); then
 echo -e '\033[0;32m'"Done"'\033[0m'
 sleep 2

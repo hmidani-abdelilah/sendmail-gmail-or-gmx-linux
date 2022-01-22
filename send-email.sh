@@ -24,15 +24,29 @@ source ./pack/mpac-k.sh
 source ./pack/links.sh
 source ./pack/configuration.sh
 source ./pack/check_config.sh
+source ./pack/repo.sh
 
+declare -A osInfo;
+osInfo[/etc/redhat-release]=dnf
+#osInfo[/etc/arch-release]=pacman
+#osInfo[/etc/gentoo-release]=emerge
+osInfo[/etc/SuSE-release]=zypp
+osInfo[/etc/debian_version]=apt
+
+for f in ${!osInfo[@]}
+do
+    if [[ -f $f ]];then
+        manager=${osInfo[$f]}
+    fi
+done
 
 
 configfile=/etc/ssmtp/ssmtp.conf
-if [ -f /usr/bin/dialog ] && [ -f /usr/bin/ccze ] && [ -f /bin/whiptail ]; then
+if [ -f /usr/bin/dialog ] && [ -f /usr/bin/ccze ] && [ -f /bin/whiptail ] && [ -f /usr/bin/vim ]; then
    #sudo ./$0
    echo 'File \"/usr/bin/dialog and \"/usr/bin/ccze" \"/bin/whiptail" exists'
 else
-sudo apt update -y &> /dev/null
+sudo ${manager} update -y  &> /dev/null
 wait
 if (( $? == 0 )); then
 echo -e '\033[0;32m'"Done"'\033[0m'
@@ -40,8 +54,13 @@ sleep 1
 else
 echo -e '\033[0;31m'"Error not updated "'\033[0m'
 fi
-echo -e "'\033[0;36m' Install dialog ccze '\033[0;31m'"
-sudo apt install -y dialog ccze whiptail &> /dev/null
+echo -e "'\033[0;36m' Install dialog ccze vim '\033[0;31m'"
+sudo ${manager} install dialog ccze vim -y  &> /dev/null
+wait 
+sudo ${manager} install whiptail -y &> /dev/null || sudo ${manager} install newt -y  &> /dev/null
+# whiptail == newt fedora
+wait
+sleep 5
 if (( $? == 0 )); then
 echo -e '\033[0;32m'"Done"'\033[0m'
 sleep 1
@@ -51,7 +70,7 @@ fi
 fi
 
 HEIGHT=20
-WIDTH=40
+WIDTH=48
 CHOICE_HEIGHT=8
 BACKTITLE="sending mail by cli using gmail"
 TITLE="install & configure mail tools"
@@ -67,7 +86,8 @@ OPTIONS=(1 "Allow your gmail in links"
          8 "Test mails"
          9 "Test mpack"
          10 "Test mutt"
-         11 "Exit"
+         11 "Enable repo epel-release Redhat based"
+         12 "Exit"
          )
 
 CHOICE=$(dialog --clear \
@@ -96,7 +116,7 @@ case $CHOICE in
             ;;           
         5)
             echo "Edit your config"
-            sensible-editor ${configfile}
+            sensible-editor ${configfile} 2> /dev/null || vim  ${configfile} 2> /dev/null
             ;;
         6 )  
             mailxx
@@ -119,6 +139,9 @@ case $CHOICE in
             sudo ./$0
             ;;
         11 ) 
+            repo
+            ;;
+        12 ) 
             exit
             ;;
 esac
