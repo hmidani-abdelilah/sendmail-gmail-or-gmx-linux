@@ -117,6 +117,7 @@ case $CHOICE in
         5)
             echo "Edit your config"
             sensible-editor ${configfile} 2> /dev/null || vim  ${configfile} 2> /dev/null
+            sudo ./$0
             ;;
         6 )  
             mailxx
