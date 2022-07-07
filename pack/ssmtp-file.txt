@@ -1,0 +1,9 @@
+#/etc/ssmtp/ssmtp.conf
+root=hmidaniabdelilah@gmx.com
+mailhub=smtp.gmx.com:587
+rewriteDomain=gmx.com
+hostname=server-dell
+FromLineOverride=NO
+AuthUser=hmidaniabdelilah@gmx.com
+AuthPass=Password
+UseSTARTTLS=YES
