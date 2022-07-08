@@ -65,6 +65,7 @@ if [ ${servergmail} = ${gmailserver} ]; then
                 echo "AuthUser=${gmail}" >> ${configfile}
                 echo "AuthPass=${password}" >> ${configfile}
                 echo "UseTLS=YES" >> ${configfile}
+                echo "UseSTARTTLS=YES" >> ${configfile}
             fi
     cp /etc/ssmtp/revaliases{,.old}
     echo " " > /etc/ssmtp/revaliases
