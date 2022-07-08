@@ -68,7 +68,8 @@ if [ ${servergmx} = ${gmxserver} ]; then
                 echo "AuthPass=${password}" >> ${configfile}
                 echo "UseTLS=YES" >> ${configfile}
                 echo "UseSTARTTLS=YES" >> ${configfile}
-            fi     
+            fi  
     # config /etc/ssmtp/revaliases
-    echo ${name}":mail.gmx.com" > ${configrootmail}
+    gmxmail=(`sudo grep AuthUser /etc/ssmtp/ssmtp.conf |cut -f 2 -d =`)
+    echo "root:"${gmxmail}":mail.gmx.com" >> ${configrootmail}
 }
