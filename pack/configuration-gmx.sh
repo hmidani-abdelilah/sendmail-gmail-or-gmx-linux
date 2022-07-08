@@ -9,7 +9,7 @@ wait
 cp ${configrootmail}{,.old}
 wait
 #if [ -a ${configfile} ];then
-if [ ${servergmx} = ${gmxserver} ]; then
+if [ ${servergmx} == ${gmxserver} ]; then
                 echo -e '\033[0;33m' "File ${configfile} exists"'\033[0m'
                 echo 
                 while :
