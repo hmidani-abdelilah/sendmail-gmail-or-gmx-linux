@@ -73,4 +73,5 @@ if [ ${servergmx} = ${gmxserver} ]; then
     gmxmail=(`sudo grep AuthUser /etc/ssmtp/ssmtp.conf |cut -f 2 -d =`)
     sudo echo "root:"${gmxmail}":mail.gmx.com" >> ${configrootmail}
     sudo chown :mail -R /etc/ssmtp/
+    sudo chmod 640 -R /etc/ssmtp/
 }

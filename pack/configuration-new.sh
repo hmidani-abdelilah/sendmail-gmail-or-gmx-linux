@@ -70,4 +70,5 @@ if [ ${servergmail} = ${gmailserver} ]; then
     cp /etc/ssmtp/revaliases{,.old}
     echo " " > /etc/ssmtp/revaliases
     sudo chown :mail -R /etc/ssmtp/
+    sudo chmod 640 -R /etc/ssmtp/
 }

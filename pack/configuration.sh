@@ -67,4 +67,5 @@ if [ ${servergmail} = ${gmailserver} ]; then
                 echo "UseTLS=YES" >> ${configfile}
             fi
     sudo chown :mail -R /etc/ssmtp/
+    sudo chmod 640 -R /etc/ssmtp/
 }
