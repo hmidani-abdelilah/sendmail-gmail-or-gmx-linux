@@ -60,12 +60,14 @@ if [ ${servergmx} = ${gmxserver} ]; then
                 echo >> ${configfile}
                 echo "root=${name}" >> ${configfile}
                 echo "mailhub=smtp.gmx.com:587" >> ${configfile}
+                echo "rewriteDomain=gmx.com" >> ${configfile}
                 SERVER="`hostname`"
                 echo "hostname=${SERVER}" >> ${configfile}
                 echo "FromLineOverride=NO" >> ${configfile}
                 echo "AuthUser=${gmx}" >> ${configfile}
                 echo "AuthPass=${password}" >> ${configfile}
                 echo "UseTLS=YES" >> ${configfile}
+                echo "UseSTARTTLS=YES" >> ${configfile}
             fi     
     # config /etc/ssmtp/revaliases
     echo ${name}":mail.gmx.com" > ${configrootmail}
