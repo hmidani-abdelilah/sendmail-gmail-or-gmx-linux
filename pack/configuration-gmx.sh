@@ -5,7 +5,9 @@ configrootmail=/etc/ssmtp/revaliases
 servergmx=(`sudo grep smtp.gmx.com:587 /etc/ssmtp/ssmtp.conf |cut -f 2 -d =`)
 gmxserver="smtp.gmx.com:587"
 cp ${configfile}{,.old}
+wait
 cp ${configrootmail}{,.old}
+wait
 #if [ -a ${configfile} ];then
 if [ ${servergmx} = ${gmxserver} ]; then
                 echo -e '\033[0;33m' "File ${configfile} exists"'\033[0m'
@@ -73,7 +75,10 @@ if [ ${servergmx} = ${gmxserver} ]; then
             fi  
     # config /etc/ssmtp/revaliases
     gmxmail=(`sudo grep AuthUser /etc/ssmtp/ssmtp.conf |cut -f 2 -d =`)
+    wait
     sudo echo "root:"${gmxmail}":mail.gmx.com" > ${configrootmail}
+    wait
     sudo chown :mail -R /etc/ssmtp/
+    wait
     sudo chmod 640 -R /etc/ssmtp/
 }

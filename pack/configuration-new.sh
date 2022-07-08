@@ -6,6 +6,7 @@ servergmail=(`sudo grep smtp.gmail.com:587 /etc/ssmtp/ssmtp.conf |cut -f 2 -d =`
 gmailserver="smtp.gmail.com:587"
 #if [ -a ${configfile} ];then
 cp ${configfile}{,.old}
+wait
 if [ ${servergmail} = ${gmailserver} ]; then
                 echo -e '\033[0;33m' "File ${configfile} exists"'\033[0m'
                 echo 
@@ -70,7 +71,10 @@ if [ ${servergmail} = ${gmailserver} ]; then
                 echo "UseSTARTTLS=YES" >> ${configfile}
             fi
     cp ${configrootmail}{,.old}
+    wait
     echo " " > ${configrootmail}
+    wait
     sudo chown :mail -R /etc/ssmtp/
+    wait
     sudo chmod 640 -R /etc/ssmtp/
 }

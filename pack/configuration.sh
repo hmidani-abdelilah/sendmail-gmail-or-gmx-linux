@@ -6,7 +6,9 @@ servergmail=(`sudo grep smtp.gmail.com:465 /etc/ssmtp/ssmtp.conf |cut -f 2 -d =`
 gmailserver="smtp.gmail.com:465"
 #if [ -a ${configfile} ];then
 cp ${configfile}{,.old}
+wait
 cp ${configrootmail}{,.old}
+wait
 if [ ${servergmail} = ${gmailserver} ]; then
                 echo -e '\033[0;33m' "File ${configfile} exists"'\033[0m'
                 echo 
