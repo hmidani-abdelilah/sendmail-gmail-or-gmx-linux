@@ -26,6 +26,7 @@ source ./pack/configuration.sh
 source ./pack/check_config.sh
 source ./pack/repo.sh
 source ./pack/configuration-gmx.sh
+source ./pack/configuration-new.sh
 
 declare -A osInfo;
 osInfo[/etc/redhat-release]=dnf
@@ -79,17 +80,18 @@ MENU="Choose one of the following options:"
 
 OPTIONS=(1 "Allow your gmail in links"
          2 "Install tools mail"
-         3 "Entre config GMAIL"
-         4 "Entre config GMX"
-         5 "Check your config"
-         6 "Edit your config"
-         7 "Test mailx"
-         8 "Test SSMTP"
-         9 "Test mails"
-         10 "Test mpack"
-         11 "Test mutt"
-         12 "Enable repo epel-release Redhat based"
-         13 "Exit"
+         3 "Entre config GMAIL 2022"
+         4 "Entre config GMAIL Old"
+         5 "Entre config GMX"
+         6 "Check your config"
+         7 "Edit your config"
+         8 "Test mailx"
+         9 "Test SSMTP"
+         10 "Test mails"
+         11 "Test mpack"
+         12 "Test mutt"
+         13 "Enable repo epel-release Redhat based"
+         14 "Exit"
          )
 
 CHOICE=$(dialog --clear \
@@ -110,46 +112,50 @@ case $CHOICE in
             sudo ./$0
             ;;
         3)
+            configuration-new
+            sudo ./$0
+            ;;
+        4)
             configuration
             sudo ./$0
             ;;
-        4) 
+        5) 
             configuration-gmx
             sudo ./$0
             ;;
-        5)
+        6)
             Check 
             ;;           
-        6)
+        7)
             echo "Edit your config"
             sensible-editor ${configfile} 2> /dev/null || vim  ${configfile} 2> /dev/null
             sudo ./$0
             ;;
-        7)  
+        8)  
             mailxx
             sudo ./$0
             ;;
-        8) 
+        9) 
             ssmtpp
             sudo ./$0
             ;;
-        9) 
+        10) 
             mailss
             sudo ./$0
             ;;
-        10) 
+        11) 
             mpackk
             sudo ./$0
             ;;
-        11)
+        12)
             muttt
             sudo ./$0
             ;;
-        12) 
+        13) 
             repo
             sudo ./$0
             ;;
-        13) 
+        14) 
             exit
             ;;
 esac

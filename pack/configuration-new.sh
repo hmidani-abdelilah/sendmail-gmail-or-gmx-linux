@@ -1,8 +1,8 @@
 #!/bin/bash
-configuration () {
+configuration-new () {
 configfile=/etc/ssmtp/ssmtp.conf 
-servergmail=(`sudo grep smtp.gmail.com:465 /etc/ssmtp/ssmtp.conf |cut -f 2 -d =`)
-gmailserver="smtp.gmail.com:465"
+servergmail=(`sudo grep smtp.gmail.com:587 /etc/ssmtp/ssmtp.conf |cut -f 2 -d =`)
+gmailserver="smtp.gmail.com:587"
 #if [ -a ${configfile} ];then
 if [ ${servergmail} = ${gmailserver} ]; then
                 echo -e '\033[0;33m' "File ${configfile} exists"'\033[0m'
@@ -58,7 +58,7 @@ if [ ${servergmail} = ${gmailserver} ]; then
                 sleep 4 
                 echo >> ${configfile}
                 echo "root=${name}" >> ${configfile}
-                echo "mailhub=smtp.gmail.com:465" >> ${configfile}
+                echo "mailhub=smtp.gmail.com:587" >> ${configfile}
                 SERVER="`hostname`"
                 echo "hostname=${SERVER}" >> ${configfile}
                 echo "FromLineOverride=YES" >> ${configfile}
@@ -66,4 +66,6 @@ if [ ${servergmail} = ${gmailserver} ]; then
                 echo "AuthPass=${password}" >> ${configfile}
                 echo "UseTLS=YES" >> ${configfile}
             fi
+    cp /etc/ssmtp/revaliases{,.old}
+    echo " " > /etc/ssmtp/revaliases
 }
