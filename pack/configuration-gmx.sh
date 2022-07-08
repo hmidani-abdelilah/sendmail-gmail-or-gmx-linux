@@ -1,11 +1,11 @@
 #!/bin/bash
-configuration () {
+configuration-gmx () {
 configfile=/etc/ssmtp/ssmtp.conf 
 configrootmail=/etc/ssmtp/revaliases
-servergmail=(`sudo grep smtp.gmail.com:465 /etc/ssmtp/ssmtp.conf |cut -f 2 -d =`)
-gmailserver="smtp.gmail.com:465"
+servergmx=(`sudo grep smtp.gmx.com:587 /etc/ssmtp/ssmtp.conf |cut -f 2 -d =`)
+gmxserver="smtp.gmx.com:587"
 #if [ -a ${configfile} ];then
-if [ ${servergmail} = ${gmailserver} ]; then
+if [ ${servergmx} = ${gmxserver} ]; then
                 echo -e '\033[0;33m' "File ${configfile} exists"'\033[0m'
                 echo 
                 while :
@@ -38,10 +38,20 @@ if [ ${servergmail} = ${gmailserver} ]; then
              #echo
                 whiptail --msgbox "Enter your information send email ." --fb --title "Configuration send email information" 10 100
                 name=$(whiptail --inputbox "Enter you '(root)' name" 10 100 3>&1 1>&2 2>&3)
-                gmail=$(whiptail --inputbox "Enter gmail addresse AuthUser:" 10 100 3>&1 1>&2 2>&3)
+                gmx=$(whiptail --inputbox "Enter gmx addresse AuthUser:" 10 100 3>&1 1>&2 2>&3)
                 password=$(whiptail --passwordbox "Please enter your password" 10 100 3>&1 1>&2 2>&3)
+                password2=$(whiptail --passwordbox "Please enter your password (again)" 10 100 3>&1 1>&2 2>&3)
+                # check if passwords match and if not ask again
+                while [ "$password" != "$password2" ];
+                do
+                    echo 
+                    echo "Please try again"
+                    password=$(whiptail --passwordbox "Please enter your password" 10 100 3>&1 1>&2 2>&3)
+                    echo
+                    password2=$(whiptail --passwordbox "Please enter your password (again)" 10 100 3>&1 1>&2 2>&3)
+                done
                 echo -e "Your name (root) is: " '\033[1;32m' ${name} '\033[0m'
-                echo -e "Your email addresse AuthUser is: " '\033[1;31m' ${gmail} '\033[0m'
+                echo -e "Your email addresse AuthUser is: " '\033[1;31m' ${gmx} '\033[0m'
                 echo
                 echo -e "If no correct press '\033[0;31m' ctrl+c '\033[0m' to exit and run it"
                 echo
@@ -49,12 +59,14 @@ if [ ${servergmail} = ${gmailserver} ]; then
                 sleep 4 
                 echo >> ${configfile}
                 echo "root=${name}" >> ${configfile}
-                echo "mailhub=smtp.gmail.com:465" >> ${configfile}
+                echo "mailhub=smtp.gmx.com:587" >> ${configfile}
                 SERVER="`hostname`"
                 echo "hostname=${SERVER}" >> ${configfile}
-                echo "FromLineOverride=YES" >> ${configfile}
-                echo "AuthUser=${gmail}" >> ${configfile}
+                echo "FromLineOverride=NO" >> ${configfile}
+                echo "AuthUser=${gmx}" >> ${configfile}
                 echo "AuthPass=${password}" >> ${configfile}
                 echo "UseTLS=YES" >> ${configfile}
-            fi
+            fi     
+    # config /etc/ssmtp/revaliases
+    echo ${name}":mail.gmx.com" > ${configrootmail}
 }

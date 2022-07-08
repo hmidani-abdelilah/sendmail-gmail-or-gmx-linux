@@ -25,6 +25,7 @@ source ./pack/links.sh
 source ./pack/configuration.sh
 source ./pack/check_config.sh
 source ./pack/repo.sh
+source ./pack/configuration-gmx.sh
 
 declare -A osInfo;
 osInfo[/etc/redhat-release]=dnf
@@ -78,16 +79,17 @@ MENU="Choose one of the following options:"
 
 OPTIONS=(1 "Allow your gmail in links"
          2 "Install tools mail"
-         3 "Entre config"
-         4 "Check your config"
-         5 "Edit your config"
-         6 "Test mailx"
-         7 "Test SSMTP"
-         8 "Test mails"
-         9 "Test mpack"
-         10 "Test mutt"
-         11 "Enable repo epel-release Redhat based"
-         12 "Exit"
+         3 "Entre config GMAIL"
+         4 "Entre config GMX"
+         5 "Check your config"
+         6 "Edit your config"
+         7 "Test mailx"
+         8 "Test SSMTP"
+         9 "Test mails"
+         10 "Test mpack"
+         11 "Test mutt"
+         12 "Enable repo epel-release Redhat based"
+         13 "Exit"
          )
 
 CHOICE=$(dialog --clear \
@@ -111,38 +113,43 @@ case $CHOICE in
             configuration
             sudo ./$0
             ;;
-        4)
+        4) 
+            configuration-gmx
+            sudo ./$0
+            ;;
+        5)
             Check 
             ;;           
-        5)
+        6)
             echo "Edit your config"
             sensible-editor ${configfile} 2> /dev/null || vim  ${configfile} 2> /dev/null
             sudo ./$0
             ;;
-        6 )  
+        7)  
             mailxx
             sudo ./$0
             ;;
-        7 ) 
+        8) 
             ssmtpp
             sudo ./$0
             ;;
-        8 ) 
+        9) 
             mailss
             sudo ./$0
             ;;
-        9 ) 
+        10) 
             mpackk
             sudo ./$0
             ;;
-        10 )
+        11)
             muttt
             sudo ./$0
             ;;
-        11 ) 
+        12) 
             repo
+            sudo ./$0
             ;;
-        12 ) 
+        13) 
             exit
             ;;
 esac
