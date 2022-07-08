@@ -4,6 +4,8 @@ configfile=/etc/ssmtp/ssmtp.conf
 configrootmail=/etc/ssmtp/revaliases
 servergmx=(`sudo grep smtp.gmx.com:587 /etc/ssmtp/ssmtp.conf |cut -f 2 -d =`)
 gmxserver="smtp.gmx.com:587"
+cp ${configfile}{,.old}
+cp ${configrootmail}{,.old}
 #if [ -a ${configfile} ];then
 if [ ${servergmx} = ${gmxserver} ]; then
                 echo -e '\033[0;33m' "File ${configfile} exists"'\033[0m'
@@ -57,7 +59,7 @@ if [ ${servergmx} = ${gmxserver} ]; then
                 echo
                 echo -e "If you want to shake information use '\033[1;32m' ( cat ${configfile} ) '\033[0m' and edit if not correct."
                 sleep 4 
-                echo >> ${configfile}
+                echo > ${configfile}
                 echo "root=${name}" >> ${configfile}
                 echo "mailhub=smtp.gmx.com:587" >> ${configfile}
                 echo "rewriteDomain=gmx.com" >> ${configfile}
@@ -71,7 +73,7 @@ if [ ${servergmx} = ${gmxserver} ]; then
             fi  
     # config /etc/ssmtp/revaliases
     gmxmail=(`sudo grep AuthUser /etc/ssmtp/ssmtp.conf |cut -f 2 -d =`)
-    sudo echo "root:"${gmxmail}":mail.gmx.com" >> ${configrootmail}
+    sudo echo "root:"${gmxmail}":mail.gmx.com" > ${configrootmail}
     sudo chown :mail -R /etc/ssmtp/
     sudo chmod 640 -R /etc/ssmtp/
 }

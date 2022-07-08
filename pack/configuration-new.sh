@@ -1,9 +1,11 @@
 #!/bin/bash
 configuration-new () {
 configfile=/etc/ssmtp/ssmtp.conf 
+configrootmail=/etc/ssmtp/revaliases
 servergmail=(`sudo grep smtp.gmail.com:587 /etc/ssmtp/ssmtp.conf |cut -f 2 -d =`)
 gmailserver="smtp.gmail.com:587"
 #if [ -a ${configfile} ];then
+cp ${configfile}{,.old}
 if [ ${servergmail} = ${gmailserver} ]; then
                 echo -e '\033[0;33m' "File ${configfile} exists"'\033[0m'
                 echo 
@@ -56,7 +58,7 @@ if [ ${servergmail} = ${gmailserver} ]; then
                 echo
                 echo -e "If you want to shake information use '\033[1;32m' ( cat ${configfile} ) '\033[0m' and edit if not correct."
                 sleep 4 
-                echo >> ${configfile}
+                echo > ${configfile}
                 echo "root=${name}" >> ${configfile}
                 echo "mailhub=smtp.gmail.com:587" >> ${configfile}
                 SERVER="`hostname`"
@@ -67,8 +69,8 @@ if [ ${servergmail} = ${gmailserver} ]; then
                 echo "UseTLS=YES" >> ${configfile}
                 echo "UseSTARTTLS=YES" >> ${configfile}
             fi
-    cp /etc/ssmtp/revaliases{,.old}
-    echo " " > /etc/ssmtp/revaliases
+    cp ${configrootmail}{,.old}
+    echo " " > ${configrootmail}
     sudo chown :mail -R /etc/ssmtp/
     sudo chmod 640 -R /etc/ssmtp/
 }
