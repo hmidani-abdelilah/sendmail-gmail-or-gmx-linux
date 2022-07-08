@@ -1,2 +1,2 @@
 #/etc/ssmtp/revaliases
-root:hmidaniabdelilah@gmx.com:mail.gmx.com
+root:example@gmx.com:mail.gmx.com

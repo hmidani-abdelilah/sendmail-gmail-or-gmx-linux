@@ -1,20 +1,21 @@
 #/etc/ssmtp/ssmtp.conf
-root=hmidaniabdelilah@gmx.com
+
+##GMX
+root=example@gmx.com
 mailhub=smtp.gmx.com:587
 rewriteDomain=gmx.com
 hostname=server-dell
 FromLineOverride=NO
-AuthUser=hmidaniabdelilah@gmx.com
+AuthUser=example@gmx.com
 AuthPass=Password
 UseSTARTTLS=YES
-# gmail 
 
-
-root=hmidaniabdelilah921@gmail.com
+##GMAIL
+root=example@gmail.com
 mailhub=smtp.gmail.com:587
 hostname=server-dell
 FromLineOverride=YES
-AuthUser=hmidaniabdelilah921@gmail.com
+AuthUser=example@gmail.com
 AuthPass=password
 UseSTARTTLS=YES
 UseTLS=YES
