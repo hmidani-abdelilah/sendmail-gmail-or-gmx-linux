@@ -66,4 +66,5 @@ if [ ${servergmail} = ${gmailserver} ]; then
                 echo "AuthPass=${password}" >> ${configfile}
                 echo "UseTLS=YES" >> ${configfile}
             fi
+    sudo chown :mail -R /etc/ssmtp/
 }

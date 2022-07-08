@@ -71,5 +71,6 @@ if [ ${servergmx} = ${gmxserver} ]; then
             fi  
     # config /etc/ssmtp/revaliases
     gmxmail=(`sudo grep AuthUser /etc/ssmtp/ssmtp.conf |cut -f 2 -d =`)
-    echo "root:"${gmxmail}":mail.gmx.com" >> ${configrootmail}
+    sudo echo "root:"${gmxmail}":mail.gmx.com" >> ${configrootmail}
+    sudo chown :mail -R /etc/ssmtp/
 }
