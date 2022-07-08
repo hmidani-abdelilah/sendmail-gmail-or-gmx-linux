@@ -7,3 +7,14 @@ FromLineOverride=NO
 AuthUser=hmidaniabdelilah@gmx.com
 AuthPass=Password
 UseSTARTTLS=YES
+# gmail 
+
+
+root=hmidaniabdelilah921@gmail.com
+mailhub=smtp.gmail.com:587
+hostname=server-dell
+FromLineOverride=YES
+AuthUser=hmidaniabdelilah921@gmail.com
+AuthPass=password
+UseSTARTTLS=YES
+UseTLS=YES
