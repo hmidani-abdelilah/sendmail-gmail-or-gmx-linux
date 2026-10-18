@@ -19,7 +19,3 @@ A lightweight command-line script for sending emails from Linux. Use it in your 
 - Email automated reports
 - Send system or application alerts
 - Add email notifications to shell scripts
-
-## Security
-
-Keep your email credentials private. Don’t commit passwords, app passwords, or other secrets to the repository.
